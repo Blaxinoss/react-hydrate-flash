@@ -1,6 +1,7 @@
 
 import React from 'react';
 import SSRDemo from '../components/SSRDemo';
+import SSRExplanation from '../components/SSRExplanation';
 
 const Index = () => {
   return (
@@ -15,6 +16,8 @@ const Index = () => {
             is pre-rendered using ReactDOMServer.renderToString() and then hydrated on the client.
           </p>
         </div>
+        
+        <SSRExplanation />
         <SSRDemo />
       </div>
     </div>
