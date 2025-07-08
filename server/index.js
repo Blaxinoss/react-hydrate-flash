@@ -14,6 +14,8 @@ const PORT = 3000;
 
 app.use(express.static(join(__dirname, "../dist")));
 
+React.create
+
 app.get("*", (req, res) => {
   const html = ReactDOMServer.renderToString(
     React.createElement(App, { url: req.url }) // ✅ Fix here
