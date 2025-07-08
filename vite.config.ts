@@ -3,7 +3,6 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 
-// https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
@@ -11,12 +10,23 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
-    mode === 'development' &&
-    componentTagger(),
+    mode === "development" && componentTagger(),
   ].filter(Boolean),
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+    },
+  },
+  define: {
+    "process.env.NODE_ENV": JSON.stringify(mode), // ✅ هنا السحر
+    "process.env": {}, // تمنع access غير محسوب
+  },
+  build: {
+    outDir: "dist",
+    lib: {
+      entry: path.resolve(__dirname, "./src/main.jsx"),
+      formats: ["es"],
+      fileName: () => "client.bundle.js",
     },
   },
 }));
